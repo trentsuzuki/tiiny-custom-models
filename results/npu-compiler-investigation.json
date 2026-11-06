@@ -1,0 +1,1008 @@
+{
+  "experiment_date_local": "2026-11-05",
+  "timezone": "America/Toronto",
+  "device": {
+    "model": "Tiiny z01",
+    "firmware_service": "0.1.29",
+    "host_arch": "aarch64",
+    "npu_driver": "houmo,xh2a",
+    "runtime_image": "z_image_turbo_houmo:20260115"
+  },
+  "runtime": {
+    "version": "v2.5.0",
+    "commit": "9fe0c2e0dcd4f82fc8196ae5633a2e05a395fd50",
+    "build_date": "2026-01-02",
+    "backend": "Xh2HalBackend",
+    "compiler_function_present": false,
+    "compiler_image_tag_candidates": [],
+    "onnxruntime_providers": [
+      "AzureExecutionProvider",
+      "CPUExecutionProvider"
+    ]
+  },
+  "compiler": {
+    "name": "Houmo PostMo-Compiler / TCIM",
+    "documented_image_archive": "Dadao-docker-xh2-1.5.0-ubuntu24.04-x86.64.tar",
+    "documented_image_tag": "harbor.houmo.ai/toolchain/release:Dadao-docker-xh2-1.5.0-ubuntu24.04-x86.64",
+    "download_portal": "https://developer.houmoai.com/resources_v2",
+    "portal_result": "login_required",
+    "developer_account_available": false,
+    "registry_result": "hostname_did_not_resolve_on_tested_network",
+    "downloaded": false,
+    "installed": false,
+    "required_host": "Linux x86_64",
+    "published_llm_quantization_requires_gpu": true,
+    "compatibility_with_installed_runtime": "unverified"
+  },
+  "downloads": {
+    "compute": {
+      "url": "https://raw.githubusercontent.com/houmo-ai/postmo-modelzoo/9121ddac32d0d1a7317103a592b22f955d656050/tools/hm_check/models/xh2_compute.hmm",
+      "bytes": 1065032,
+      "sha256": "84d6632c7efd9c8c2e165e3f1f7a1af2f4187b570bfc4280c70088ae788e5c85"
+    },
+    "lfm3_graph": {
+      "url": "https://huggingface.co/LiquidAI/LFM3-1.7B-ONNX/resolve/57c125dfa29f2d39157e280b1d1f7480b8736d8d/onnx/model_fp16.onnx",
+      "revision": "57c125dfa29f2d39157e280b1d1f7480b8736d8d",
+      "bytes": 270733,
+      "sha256": "d3093d69f6f954bd74f1dc9e59452ec5e9766e62d9c409456fb8ea5698a830fe"
+    },
+    "compute_legacy": {
+      "url": "https://raw.githubusercontent.com/houmo-ai/postmo-modelzoo/8b1d5572081d1906322970acbdbfccd5c0d70f80/tools/hm_check/models/xh2_compute.hmm",
+      "bytes": 978240,
+      "sha256": "a393993d900b9f73c78876a0b57394d44530171a4008c9440636baf3834f29ce"
+    }
+  },
+  "current_control": {
+    "metadata": {
+      "target": "xh2",
+      "compiler_version": "v1.0.0",
+      "compiler_commit": "bd5271294",
+      "march": "v2",
+      "input": [
+        {
+          "block_layout": [
+            1,
+            1,
+            1,
+            256
+          ],
+          "shape": [
+            1,
+            64,
+            64,
+            256
+          ],
+          "format": "FMT_ND",
+          "stride": [
+            2097152,
+            32768,
+            512,
+            2
+          ],
+          "dtype": "FLOAT16",
+          "name": "input"
+        }
+      ],
+      "output": [
+        {
+          "block_layout": [
+            1,
+            1,
+            1,
+            128
+          ],
+          "shape": [
+            1,
+            64,
+            64,
+            256
+          ],
+          "format": "FMT_ND",
+          "stride": [
+            2097152,
+            32768,
+            512,
+            2
+          ],
+          "dtype": "FLOAT16",
+          "name": "nchw_to_nhwc"
+        }
+      ],
+      "model_memory_bytes": 5257216
+    },
+    "loaded": false,
+    "inference_attempted": false,
+    "failure_stage": "binary_format_validation",
+    "error": "model_->header()->version() == tcim::binary::BinaryMagic_VERSION; Module load error: Status.UNINITIALIZED"
+  },
+  "legacy_control": {
+    "metadata": {
+      "target": "xh2",
+      "compiler_version": "v2.4.0 2025-09-27 bed88f38d",
+      "compiler_commit": "bed88f38d",
+      "march": null,
+      "input": [
+        {
+          "block_layout": [
+            1,
+            1,
+            1,
+            256
+          ],
+          "shape": [
+            1,
+            64,
+            64,
+            256
+          ],
+          "format": "FMT_ND",
+          "stride": [
+            2097152,
+            32768,
+            512,
+            2
+          ],
+          "dtype": "FLOAT16",
+          "name": "input"
+        }
+      ],
+      "output": [
+        {
+          "block_layout": [
+            1,
+            1,
+            1,
+            128
+          ],
+          "shape": [
+            1,
+            64,
+            64,
+            256
+          ],
+          "format": "FMT_ND",
+          "stride": [
+            2097152,
+            32768,
+            512,
+            2
+          ],
+          "dtype": "FLOAT16",
+          "name": "nchw_to_nhwc"
+        }
+      ],
+      "model_memory_bytes": 5186752
+    },
+    "loaded": true,
+    "initialization_status": "Status.OK",
+    "module_get_model_version": 20250102,
+    "inference_completed": true,
+    "cases": [
+      {
+        "case": "zero",
+        "rounds": 1,
+        "elapsed_ms": 8.408199999394128,
+        "outputs": [
+          {
+            "name": "nchw_to_nhwc",
+            "shape": [
+              1,
+              64,
+              64,
+              256
+            ],
+            "dtype": "float16",
+            "finite": true,
+            "minimum": -357.75,
+            "maximum": 394.25,
+            "sha256": "31e68e9a282694f3546549f24e8c4f1d055e63f1e87a65f32fa5c42efedc20f3"
+          }
+        ]
+      },
+      {
+        "case": "small_constant",
+        "rounds": 1,
+        "elapsed_ms": 8.327190000272822,
+        "outputs": [
+          {
+            "name": "nchw_to_nhwc",
+            "shape": [
+              1,
+              64,
+              64,
+              256
+            ],
+            "dtype": "float16",
+            "finite": true,
+            "minimum": -354.5,
+            "maximum": 389.75,
+            "sha256": "1a2192c1a3cb4eeafbacae447184f9eae3ebad28277b9173f26e2bb22fa1fea3",
+            "changed_from_zero": true
+          }
+        ]
+      }
+    ],
+    "cpu_reference_validation_performed": false,
+    "compiler_invoked": false,
+    "scope": "Two single-round executions of a vendor-precompiled convolution test; not LFM3 and not a sustained benchmark."
+  },
+  "lfm3": {
+    "npu_inference_completed": false,
+    "compiled": false,
+    "prior_bundled_engine_failure": "unknown model architecture: 'lfm3'",
+    "fp16_graph_only_inspected": true,
+    "external_weights_downloaded": false,
+    "graph": {
+      "opsets": {
+        "ai.onnx": 21,
+        "com.microsoft": 1
+      },
+      "nodes": 705,
+      "operators": {
+        "ai.onnx::ReduceSum": 1,
+        "ai.onnx::Sub": 1,
+        "ai.onnx::Cast": 3,
+        "ai.onnx::Shape": 14,
+        "ai.onnx::Gather": 15,
+        "ai.onnx::SimplifiedLayerNormalization": 119,
+        "ai.onnx::MatMul": 154,
+        "ai.onnx::Transpose": 27,
+        "ai.onnx::Split": 13,
+        "ai.onnx::Mul": 98,
+        "ai.onnx::Concat": 13,
+        "ai.onnx::Conv": 13,
+        "ai.onnx::Unsqueeze": 13,
+        "ai.onnx::Slice": 27,
+        "ai.onnx::Add": 48,
+        "ai.onnx::Sigmoid": 35,
+        "ai.onnx::Reshape": 77,
+        "com.microsoft::RotaryEmbedding": 22,
+        "com.microsoft::GroupQueryAttention": 11,
+        "ai.onnx::Neg": 1
+      },
+      "inputs": [
+        {
+          "name": "input_ids",
+          "dtype": "INT64",
+          "shape": [
+            "batch_size",
+            "sequence_length"
+          ]
+        },
+        {
+          "name": "attention_mask",
+          "dtype": "INT64",
+          "shape": [
+            "batch_size",
+            "total_sequence_length"
+          ]
+        },
+        {
+          "name": "position_ids",
+          "dtype": "INT64",
+          "shape": [
+            "batch_size",
+            "sequence_length"
+          ]
+        },
+        {
+          "name": "logits_to_keep",
+          "dtype": "INT64",
+          "shape": [
+            1
+          ]
+        },
+        {
+          "name": "past_conv.0",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_conv.1",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_key_values.2.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.2.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_conv.3",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_key_values.4.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.4.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_conv.5",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_key_values.6.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.6.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_conv.7",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_key_values.8.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.8.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_conv.9",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_key_values.10.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.10.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_conv.11",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_key_values.12.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.12.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_conv.13",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_key_values.14.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.14.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_conv.15",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_key_values.16.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.16.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_conv.17",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_key_values.18.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.18.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_conv.19",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_key_values.20.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.20.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_conv.21",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "past_key_values.22.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_key_values.22.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "past_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "past_conv.23",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "logits",
+          "dtype": "FLOAT",
+          "shape": [
+            "batch_size",
+            "num_logits",
+            128000
+          ]
+        },
+        {
+          "name": "present_conv.0",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present_conv.1",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present.2.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present.2.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present_conv.3",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present.4.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present.4.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present_conv.5",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present.6.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present.6.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present_conv.7",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present.8.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present.8.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present_conv.9",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present.10.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present.10.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present_conv.11",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present.12.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present.12.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present_conv.13",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present.14.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present.14.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present_conv.15",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present.16.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present.16.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present_conv.17",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present.18.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present.18.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present_conv.19",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present.20.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present.20.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present_conv.21",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        },
+        {
+          "name": "present.22.key",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present.22.value",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            4,
+            "total_sequence_length",
+            128
+          ]
+        },
+        {
+          "name": "present_conv.23",
+          "dtype": "FLOAT16",
+          "shape": [
+            "batch_size",
+            2048,
+            7
+          ]
+        }
+      ],
+      "external_initializer_count": 268
+    }
+  },
+  "source_revisions": {
+    "postmo_modelzoo": "9121ddac32d0d1a7317103a592b22f955d656050",
+    "legacy_control": "8b1d5572081d1906322970acbdbfccd5c0d70f80",
+    "postmo_quantflow": "21e88eac9605d1de38f11cd3e0c10381fa4ee91a",
+    "houmo_llama_cpp": "df852f59f72293441b7f8ed5d464cd6cc9b07656",
+    "vllm_postmo": "de45f66ac99118c395d3266bbf10a46dde4372fd"
+  },
+  "test_script_sha256": "4c18e55464ad7069f1ecee151776a1c09dfe7fa51eee9b349ffb42d6115d3e5b",
+  "installed_qwen_model_metadata": {
+    "available": false,
+    "runtime_error": "LoadModelInfo: no model info",
+    "scope": "Read-only metadata inspection; no model execution or modification"
+  },
+  "changes": {
+    "firmware_updated": false,
+    "drivers_replaced": false,
+    "binary_checks_bypassed": false
+  },
+  "cleanup": {
+    "temporary_service_deleted": true,
+    "manager_service_get_after_delete": 404,
+    "mac_asset_port_refused": true,
+    "original_qwen_running": true
+  }
+}

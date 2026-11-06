@@ -34,7 +34,7 @@ Same model, llama.cpp b12124, 4 CPU threads, 2,048-token context, one short requ
 
 The GPU worked but was slower in this small test. Different output lengths, short prompts, and the absence of sustained-load or concurrency testing limit the comparison. These are engine-reported token rates, not hardware peak throughput.
 
-A custom OpenCL vector-add kernel also passed on the GPU. Direct NPU allocation and a memory round trip passed, but **custom NPU inference and LFM3 on the NPU have not been achieved**.
+A custom OpenCL vector-add kernel also passed on the GPU. A separate container successfully executed an older, precompiled Houmo convolution model on the NPU: two input cases took about 8.3–8.4 ms each and produced finite, different outputs. **Compiling a new NPU model and running LFM3 on the NPU remain unfinished.** The current public test binary failed the installed runtime's binary-version check; the compatible historical binary worked. See [the NPU investigation](docs/npu.md).
 
 ## Repository contents
 
@@ -51,14 +51,16 @@ A custom OpenCL vector-add kernel also passed on the GPU. Direct NPU allocation 
 | `docs/custom-models.md` | Model substitution and configuration/memory limits. |
 | `docs/results.md` | Results and unresolved limits from the investigation. |
 | `docs/troubleshooting.md` | Observed manager, archive, driver, and generation problems. |
-| `docs/npu.md` | NPU evidence and next steps, without claiming custom NPU inference. |
+| `docs/npu.md` | Compiler access, successful precompiled NPU test, compatibility failures, and LFM3 porting requirements. |
 | `docs/sources.md` | Artifact hashes, primary references, and provenance. |
 | `results/2026-11-05.json` | Selected measurements and evidence from the original experiments. |
 | `results/workflow-validation.json` | Live CPU/GPU checks of this repository's packaged workflow. |
+| `experiments/npu_compute.py` | Exact in-container probe used for the successful, bounded NPU computation test. |
+| `results/npu-compiler-investigation.json` | Compiler findings, both binary-load attempts, NPU outputs, and LFM3 ONNX graph inspection. |
 | `.gitignore` | Exclude local assets, environments, credentials files, and binary model/image files. |
 | `.local/` | Ignored local configuration, downloaded assets, and cache; created during setup. |
 
-The scripts manage only services named `tiiny-custom-cpu` and `tiiny-custom-gpu` bearing this repository's ownership label. They do not manage the built-in Qwen service. CPU/GPU profiles bind the inference server to the configured Tiiny USB address. Model weights, container binaries, credentials, and machine-specific configuration are not committed.
+The `scripts/tiiny.py` workflow manages only services named `tiiny-custom-cpu` and `tiiny-custom-gpu` bearing this repository's ownership label. It does not manage the built-in Qwen service. CPU/GPU profiles bind the inference server to the configured Tiiny USB address. Model weights, container binaries, credentials, and machine-specific configuration are not committed. The NPU experiment is a separate in-container probe; it is not an additional backend for `scripts/tiiny.py`.
 
 Tiiny's manager can report `stopped` or return HTTP 500 while a model is running. The scripts check the actual inference endpoint and use Compose scale-to-zero for shutdown. Read [the lifecycle caveat](docs/troubleshooting.md#manager-status-is-unreliable) before substituting manual API commands.
 

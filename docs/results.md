@@ -71,7 +71,9 @@ A small OpenCL C vector-add kernel was compiled and launched on `Mali-G720-Immor
 
 The installed runtime's Python bindings imported successfully, enumerated one Houmo device, allocated a 4,096-element float32 device tensor, and copied 16,384 bytes from host to device and back with exact equality. This tests allocation and data transfer only.
 
-A separate copy of Tiiny's bundled Houmo-enabled llama.cpp engine read LFM3 GGUF metadata, then rejected `lfm3` as an unknown architecture. That compatibility probe had no NPU device access; it failed before inference. No LFM3 NPU execution was achieved. The runtime image contained no usable `tcim.builder` compiler. See [the NPU checkpoint](npu.md) for the next dependencies.
+A later experiment executed an older, precompiled Houmo convolution model through `Xh2HalBackend` in a separate container. Two single-round runs, using zero and constant inputs, took 8.408 and 8.327 ms and returned finite, different output arrays. The current public version of that control model failed the runtime's binary-format check; the historical version compiled by TCIM v2.4.0 loaded and ran on the installed v2.5.0 runtime. No independent numerical-reference comparison was performed.
+
+A separate copy of Tiiny's bundled Houmo-enabled llama.cpp engine read LFM3 GGUF metadata, then rejected `lfm3` as an unknown architecture. That compatibility probe had no NPU device access; it failed before inference. No LFM3 NPU execution was achieved. The runtime image contained no usable `tcim.builder` compiler. The official compiler download requires a developer login; no package was obtained. Structural inspection of LFM3's FP16 ONNX graph found custom attention/rotary operators and 35 cache inputs that need conversion validation. See [the NPU investigation](npu.md) and [its measurement record](../results/npu-compiler-investigation.json).
 
 ## State left after the experiments
 
@@ -85,4 +87,4 @@ Cached images, stopped experiment definitions, and local assets were retained fo
 - Larger/split models, long context, multimodal inference, batching, and sustained throughput.
 - GPU tuning or other inference engines beyond the tested llama.cpp/Vulkan and OpenCL kernel.
 - Persistent model storage and integration into TiinyOS's native model catalog.
-- Custom NPU model compilation, operator coverage, and accelerator inference.
+- New NPU model compilation, LFM3 operator/cache integration, numerical validation, and LFM3 NPU inference.
