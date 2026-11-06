@@ -1,0 +1,11 @@
+.local/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.gguf
+*.safetensors
+*.tar
+*.tar.gz
+*.zip
+.env
