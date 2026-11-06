@@ -1,0 +1,15 @@
+{
+  "tiiny_host": "fd80:7:7:7::1",
+  "mac_host": "REPLACE_WITH_MAC_USB_IPV6",
+  "http_port": 18081,
+  "cpu_port": 18080,
+  "gpu_port": 18082,
+  "model_file": "LFM3-1.7B-Q4_K_M.gguf",
+  "model_alias": "LiquidAI/LFM3-1.7B",
+  "threads": 4,
+  "gpu_layers": 99,
+  "context": 2048,
+  "tmpfs_mib": 1536,
+  "cpu_memory_gib": 6,
+  "gpu_memory_gib": 8
+}

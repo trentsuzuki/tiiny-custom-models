@@ -1,0 +1,33 @@
+{
+  "services": {
+    "llm": {
+      "image": "tiiny-custom-models-cpu:b12124",
+      "build": {"context": "${ASSET_URL}/cpu-engine.tar"},
+      "pull_policy": "never",
+      "platform": "linux/arm64",
+      "labels": {"io.github.trentsuzuki.tiiny-custom-models": "cpu"},
+      "user": "1000:1000",
+      "read_only": true,
+      "cap_drop": ["ALL"],
+      "security_opt": ["no-new-privileges:true"],
+      "cpus": "${THREADS}",
+      "mem_limit": "${MEMORY_GIB}g",
+      "pids_limit": 256,
+      "restart": "no",
+      "tmpfs": ["/tmp:rw,size=${TMPFS_MIB}m,uid=1000,gid=1000,mode=1777"],
+      "network_mode": "host",
+      "environment": {"HOME": "/tmp", "LLAMA_CACHE": "/tmp/llama-cache"},
+      "command": [
+        "--model-url", "${ASSET_URL}/${MODEL_FILE}",
+        "--model", "/tmp/${MODEL_FILE}",
+        "--alias", "${MODEL_ALIAS}",
+        "--host", "${TIINY_HOST}", "--port", "${PORT}",
+        "--n-gpu-layers", "0",
+        "--ctx-size", "${CONTEXT}", "--parallel", "1",
+        "--threads", "${THREADS}", "--threads-batch", "${THREADS}",
+        "--temp", "0.1", "--top-k", "50", "--repeat-penalty", "1.1",
+        "-lv", "4"
+      ]
+    }
+  }
+}

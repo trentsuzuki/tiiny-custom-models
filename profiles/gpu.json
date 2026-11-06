@@ -1,0 +1,44 @@
+{
+  "services": {
+    "llm": {
+      "image": "tiiny-custom-models-gpu:b12124",
+      "build": {"context": "${ASSET_URL}/gpu-engine.tar"},
+      "pull_policy": "never",
+      "platform": "linux/arm64",
+      "labels": {"io.github.trentsuzuki.tiiny-custom-models": "gpu"},
+      "user": "1000:1000",
+      "read_only": true,
+      "cap_drop": ["ALL"],
+      "security_opt": ["no-new-privileges:true"],
+      "cpus": "${THREADS}",
+      "mem_limit": "${MEMORY_GIB}g",
+      "pids_limit": 256,
+      "restart": "no",
+      "tmpfs": ["/tmp:rw,size=${TMPFS_MIB}m,uid=1000,gid=1000,mode=1777"],
+      "network_mode": "host",
+      "devices": ["/dev/mali0:/dev/mali0:rw"],
+      "volumes": [
+        {"type": "bind", "source": "/opt/cixgpu-pro/lib/aarch64-linux-gnu", "target": "/vendor-gpu", "read_only": true, "bind": {"create_host_path": false}},
+        {"type": "bind", "source": "/etc/vulkan/icd.d/mali.json", "target": "/vendor-icd/mali.json", "read_only": true, "bind": {"create_host_path": false}},
+        {"type": "bind", "source": "/usr/lib/aarch64-linux-gnu/libwayland-server.so.0", "target": "/vendor-extra/libwayland-server.so.0", "read_only": true, "bind": {"create_host_path": false}}
+      ],
+      "environment": {
+        "HOME": "/tmp", "LLAMA_CACHE": "/tmp/llama-cache",
+        "XDG_CACHE_HOME": "/tmp/cache", "XDG_RUNTIME_DIR": "/tmp",
+        "LD_LIBRARY_PATH": "/vendor-gpu:/vendor-extra:/app",
+        "VK_ICD_FILENAMES": "/vendor-icd/mali.json"
+      },
+      "command": [
+        "--model-url", "${ASSET_URL}/${MODEL_FILE}",
+        "--model", "/tmp/${MODEL_FILE}",
+        "--alias", "${MODEL_ALIAS}",
+        "--host", "${TIINY_HOST}", "--port", "${PORT}",
+        "--n-gpu-layers", "${GPU_LAYERS}",
+        "--ctx-size", "${CONTEXT}", "--parallel", "1",
+        "--threads", "${THREADS}", "--threads-batch", "${THREADS}",
+        "--temp", "0.1", "--top-k", "50", "--repeat-penalty", "1.1",
+        "-lv", "4"
+      ]
+    }
+  }
+}

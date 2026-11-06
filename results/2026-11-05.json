@@ -1,0 +1,278 @@
+{
+  "date": "2026-11-05",
+  "device": "Tiiny z01, firmware/service 0.1.29, Linux 6.6.89-generic aarch64",
+  "model": {
+    "model": "LiquidAI/LFM3-1.7B",
+    "model_file": "LFM3-1.7B-Q4_K_M.gguf",
+    "model_sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+    "model_bytes": 1099627808
+  },
+  "engine": {
+    "build": "ARM64 llama.cpp server-vulkan b12124",
+    "revision": "8bed7cfb999cebc03d2cc5b78911026a8d57549a",
+    "cpu_manifest": "sha256:1440b21b6bd10dea81aafbe8bff3fca2d9b5cea7958bfab55e92e29c35d02d7f",
+    "gpu_manifest": "sha256:2c768718d72965c49e479355fadc5a0527a245ccce790c257418f40530df8ce8"
+  },
+  "cpu_requests": [
+    {
+      "prompt": "What is 17 + 25? Reply with only the number.",
+      "http_status": 200,
+      "wall_time_s": 2.1972865420393646,
+      "model": "LiquidAI/LFM3-1.7B",
+      "content": "42",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 52,
+        "prompt_tokens": 25,
+        "total_tokens": 77,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 25,
+        "prompt_ms": 367.55,
+        "prompt_per_token_ms": 14.702,
+        "prompt_per_second": 68.0179567405795,
+        "predicted_n": 52,
+        "predicted_ms": 1823.117,
+        "predicted_per_token_ms": 35.747392156862745,
+        "predicted_per_second": 27.97406858693106
+      },
+      "request_parameters": {
+        "max_tokens": 128,
+        "temperature": 0.1,
+        "top_k": 50,
+        "repeat_penalty": 1.1,
+        "seed": 42,
+        "thinking": "default enabled"
+      }
+    },
+    {
+      "prompt": "Write three short sentences explaining why leaves appear green.",
+      "http_status": 200,
+      "wall_time_s": 4.819908790988848,
+      "model": "LiquidAI/LFM3-1.7B",
+      "content": "",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 128,
+        "prompt_tokens": 20,
+        "total_tokens": 148,
+        "prompt_tokens_details": {
+          "cached_tokens": 1
+        }
+      },
+      "timings": {
+        "cache_n": 1,
+        "prompt_n": 19,
+        "prompt_ms": 254.57,
+        "prompt_per_token_ms": 13.398421052631578,
+        "prompt_per_second": 74.63566013277291,
+        "predicted_n": 128,
+        "predicted_ms": 4557.661,
+        "predicted_per_token_ms": 35.88709448818898,
+        "predicted_per_second": 27.865170314334478
+      },
+      "request_parameters": {
+        "max_tokens": 128,
+        "temperature": 0.1,
+        "top_k": 50,
+        "repeat_penalty": 1.1,
+        "seed": 42,
+        "thinking": "default enabled"
+      }
+    },
+    {
+      "prompt": "Write three short sentences explaining why leaves appear green.",
+      "request_parameters": {
+        "max_tokens": 256,
+        "temperature": 0.1,
+        "top_k": 50,
+        "repeat_penalty": 1.1,
+        "seed": 42,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "http_status": 200,
+      "wall_time_s": 3.7063209579791874,
+      "model": "LiquidAI/LFM3-1.7B",
+      "content": "Leaves appear green because the pigment chlorophyll absorbs light most strongly in the red and blue parts of the spectrum, reflecting and transmitting the light that reaches our eyes as green wavelengths. This reflection occurs when chlorophyll molecules absorb photons primarily at 430 nm (blue) and 660 nm (red), allowing the complementary color—green—to be seen. The presence of chlorophyll is essential for photosynthesis, which converts sunlight into energy to sustain the plant’s growth and development.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 95,
+        "prompt_tokens": 21,
+        "total_tokens": 116,
+        "prompt_tokens_details": {
+          "cached_tokens": 1
+        }
+      },
+      "timings": {
+        "cache_n": 1,
+        "prompt_n": 20,
+        "prompt_ms": 318.655,
+        "prompt_per_token_ms": 15.932749999999999,
+        "prompt_per_second": 62.76380411416737,
+        "predicted_n": 95,
+        "predicted_ms": 3372.584,
+        "predicted_per_token_ms": 35.87855319148936,
+        "predicted_per_second": 27.87180393431268
+      }
+    }
+  ],
+  "comparison": {
+    "prompt": "Write three short sentences explaining why leaves appear green.",
+    "parameters": {
+      "max_tokens": 256,
+      "temperature": 0.1,
+      "top_k": 50,
+      "repeat_penalty": 1.1,
+      "seed": 42,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "cache_prompt": false
+    },
+    "runs": [
+      {
+        "backend": "GPU_warm",
+        "wall_time_s": 6.229439749964513,
+        "content": "Leaves appear green because the pigment chlorophyll absorbs light most strongly in the red and blue parts of the spectrum, reflecting and transmitting the light that reaches our eyes as green wavelengths. This reflection occurs when chlorophyll molecules absorb photons primarily at 430 nm (blue) and 660 nm (red), leaving the middle range—around 500–570 nm—to be reflected. The presence of chlorophyll is essential for photosynthesis, which converts sunlight into energy to sustain the plant’s growth and development.",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 100,
+          "prompt_tokens": 21,
+          "total_tokens": 121,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 21,
+          "prompt_ms": 2341.118,
+          "prompt_per_token_ms": 111.48180952380952,
+          "prompt_per_second": 8.970073272684248,
+          "predicted_n": 100,
+          "predicted_ms": 3866.693,
+          "predicted_per_token_ms": 39.05750505050505,
+          "predicted_per_second": 25.603273908738032
+        }
+      },
+      {
+        "backend": "CPU",
+        "wall_time_s": 3.715240583056584,
+        "content": "Leaves appear green because the pigment chlorophyll absorbs light most strongly in the red and blue parts of the spectrum, reflecting and transmitting the light that reaches our eyes as green wavelengths. This reflection occurs when chlorophyll molecules absorb photons primarily at 430 nm (blue) and 660 nm (red), allowing the complementary color—green—to be seen. The presence of chlorophyll is essential for photosynthesis, which converts sunlight into energy to sustain the plant’s growth and development.",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 95,
+          "prompt_tokens": 21,
+          "total_tokens": 116,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 21,
+          "prompt_ms": 335.653,
+          "prompt_per_token_ms": 15.98347619047619,
+          "prompt_per_second": 62.564612859113424,
+          "predicted_n": 95,
+          "predicted_ms": 3374.438,
+          "predicted_per_token_ms": 35.89827659574468,
+          "predicted_per_second": 27.856490473376603
+        }
+      }
+    ]
+  },
+  "comparison_limit": "One short warm request per backend, same engine build/model/prompt/settings; output lengths differ (GPU 100, CPU 95). Not a sustained or comprehensive benchmark.",
+  "gpu_evidence": {
+    "device": "Mali-G720-Immortalis",
+    "layers_offloaded": 25,
+    "layers_total": 25,
+    "model_buffer_mib": 1040.82,
+    "vulkan_host_model_buffer_mib": 205.08,
+    "reported_gpu_memory_mib": 31797,
+    "custom_opencl_tests": [
+      {
+        "device": "Mali-G720-Immortalis r0p0",
+        "version": "OpenCL 3.0 v1.r53p0-00eac0.51e7b43a8ca32d45d7e15e03e4ee52d8",
+        "elements": 4096,
+        "max_absolute_error": 0.0,
+        "passed": true,
+        "compile_ms": 49.974500000644184,
+        "enqueue_and_read_ms": 0.616979999904288,
+        "first_values": [
+          0.0,
+          -0.25,
+          -0.5,
+          -0.75
+        ]
+      },
+      {
+        "device": "Mali-G720-Immortalis r0p0",
+        "version": "OpenCL 3.0 v1.r53p0-00eac0.51e7b43a8ca32d45d7e15e03e4ee52d8",
+        "elements": 4096,
+        "max_absolute_error": 0.0,
+        "passed": true,
+        "compile_ms": 22.311550000267744,
+        "enqueue_and_read_ms": 0.7226500001706881,
+        "first_values": [
+          0.0,
+          -0.25,
+          -0.5,
+          -0.75
+        ]
+      }
+    ]
+  },
+  "npu_evidence": {
+    "hardware": "Houmo XH2 / M50-family discrete PCIe accelerator; exact retail board SKU not established",
+    "runtime_version": "v2.5.0, 9fe0c2e0dcd4f82fc8196ae5633a2e05a395fd50, built 2026-01-02",
+    "memory_tests": [
+      {
+        "test": "host_to_npu_to_host",
+        "runtime_version": "v2.5.0\n- Git Commit: 9fe0c2e0dcd4f82fc8196ae5633a2e05a395fd50\n- Build Time: 2026-01-02 19:53:26 Jan  2 2026",
+        "backend": "Xh2HalBackend",
+        "device_count": 1,
+        "tensor_device": 1,
+        "elements": 4096,
+        "bytes": 16384,
+        "maximum_absolute_error": 0.0,
+        "allocation_and_round_trip_ms": 41.13422999944305,
+        "passed": true,
+        "scope": "Memory allocation and transfer; no inference or NPU arithmetic tested."
+      },
+      {
+        "test": "host_to_npu_to_host",
+        "runtime_version": "v2.5.0\n- Git Commit: 9fe0c2e0dcd4f82fc8196ae5633a2e05a395fd50\n- Build Time: 2026-01-02 19:53:26 Jan  2 2026",
+        "backend": "Xh2HalBackend",
+        "device_count": 1,
+        "tensor_device": 1,
+        "elements": 4096,
+        "bytes": 16384,
+        "maximum_absolute_error": 0.0,
+        "allocation_and_round_trip_ms": 1.2109299996154732,
+        "passed": true,
+        "scope": "Memory allocation and transfer; no inference or NPU arithmetic tested."
+      }
+    ],
+    "memory_test_limit": "Allocation and DMA transfer only. Does not demonstrate custom NPU arithmetic or LFM3 inference.",
+    "lfm3_parser_test": {
+      "error": "unknown model architecture: 'lfm3'",
+      "npu_device_access": false,
+      "scope": "Loaded GGUF metadata in a separate copy of the existing engine; failure occurs before inference."
+    },
+    "compiler_probe": "tcim resolves to an empty namespace; tcim.builder is absent. Runtime libraries and headers are present, a model compiler was not found in this image."
+  },
+  "cleanup": {
+    "cpu_gpu_test_servers_stopped": true,
+    "mac_asset_server_stopped": true,
+    "host_firmware_changed": false,
+    "host_drivers_changed": false,
+    "original_qwen_postcheck": "7"
+  }
+}

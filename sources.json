@@ -1,0 +1,15 @@
+{
+  "engine": {
+    "registry": "https://ghcr.io/v2/ggml-org/llama.cpp",
+    "build": "b12124",
+    "revision": "8bed7cfb999cebc03d2cc5b78911026a8d57549a",
+    "cpu": "sha256:1440b21b6bd10dea81aafbe8bff3fca2d9b5cea7958bfab55e92e29c35d02d7f",
+    "gpu": "sha256:2c768718d72965c49e479355fadc5a0527a245ccce790c257418f40530df8ce8"
+  },
+  "model": {
+    "file": "LFM3-1.7B-Q4_K_M.gguf",
+    "url": "https://huggingface.co/LiquidAI/LFM3-1.7B-GGUF/resolve/main/LFM3-1.7B-Q4_K_M.gguf",
+    "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+    "bytes": 1099627808
+  }
+}

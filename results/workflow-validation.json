@@ -1,0 +1,72 @@
+{
+  "validated_at": "2026-11-05T20:05:40.365373-05:00",
+  "host_python": "3.13.18",
+  "requests_version": "2.34.2",
+  "preparation": {
+    "pinned_oci_manifests_configs_layers_verified": true,
+    "example_model_sha256_verified": true,
+    "previous_layer_download_cache_reused": true,
+    "root_filesystems_and_build_contexts_regenerated": true,
+    "outer_context_format": "USTAR",
+    "new_cpu_and_gpu_image_tags_built_on_tiiny": true
+  },
+  "backends": {
+    "cpu": {
+      "service": "tiiny-custom-cpu",
+      "image": "tiiny-custom-models-cpu:b12124",
+      "startup_health": "ok",
+      "prompt": "What is 17 + 25? Reply with only the number.",
+      "response": "17 + 25 = 42\n\n42",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 10,
+        "prompt_tokens": 26,
+        "total_tokens": 36,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "stopped_port_verified": true
+    },
+    "gpu": {
+      "service": "tiiny-custom-gpu",
+      "image": "tiiny-custom-models-gpu:b12124",
+      "startup_health": "ok",
+      "prompt": "What is 17 + 25? Reply with only the number.",
+      "response": "17 + 25 = 42\n\n42",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 10,
+        "prompt_tokens": 26,
+        "total_tokens": 36,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "stopped_port_verified": true,
+      "offload_evidence": [
+        "0.08.326.643 I llama_prepare_model_devices: using device Vulkan0 (Mali-G720-Immortalis) (unknown id) - 31797 MiB free",
+        "0.08.586.696 I load_tensors: offloaded 25/25 layers to GPU"
+      ]
+    }
+  },
+  "final_gpu_start_and_stop_helper_completed": true,
+  "shutdown_port_checks": {
+    "18080": "connection refused",
+    "18082": "connection refused",
+    "18081": "connection refused"
+  },
+  "original_qwen_postcheck": "7",
+  "firmware_or_host_driver_changes": false,
+  "limitations": "Functional workflow check, not a new throughput benchmark. Only the original LFM3 model and this Tiiny firmware were exercised.",
+  "implementation_sha256": {
+    "scripts/prepare.py": "f693ce3e426ac308c4a3892ee4aa90d0b697661f4350e22fb5af955f5e5eaefb",
+    "scripts/tiiny.py": "d9f76ce3f85d24446da23c8c726c57eafc1477a5092f9fbf0e41bb4a16846438",
+    "profiles/cpu.json": "41c208c695179338539ac557a97a917e9f628f1a083dd608acae720d82ea1cde",
+    "profiles/gpu.json": "3e236785a28d76e0ba11ce9093e18af87dd15af50a7ed140059dfe2fd8454908",
+    "config.example.json": "201559a24fd6d7451aee699fc74490eefb1d27818b0a7b5c5eee4b0627a3e697",
+    "sources.json": "dc1524a5513cb1709352fc4796bbe69676805cb38656c0275c1a36e6bf43e3f5",
+    "Dockerfile": "e772697b5814326b2c7caee3c994ed47ba0904037e9369cc348ba9cc7156bcf9",
+    "requirements.txt": "a8dc766995bf9cf7992e2132f14c5b2a868a212513a0da7dd2c40458bda55332"
+  }
+}
