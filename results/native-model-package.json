@@ -1,0 +1,93 @@
+{
+  "observed_date": "2026-11-05",
+  "model": "Qwen/Qwen3-8B",
+  "scope": "Read-only inspection of the installed model package; not every Tiiny catalog model",
+  "files": [
+    {
+      "path": "qwen3_8b.q8_0.gguf",
+      "bytes": 667158464
+    },
+    {
+      "path": "weights/manifest.json",
+      "bytes": 559706
+    },
+    {
+      "path": "weights/bundle.bin",
+      "bytes": 4180459072
+    },
+    {
+      "path": "modules/prefill.hmm",
+      "bytes": 138271416
+    },
+    {
+      "path": "modules/decode.hmm",
+      "bytes": 121994800
+    }
+  ],
+  "weight_manifest": {
+    "entry_count": 1967,
+    "sources": [
+      "../hmcc/work_dirs/qwen3_8b_64k_decode.xh2/output.hmm",
+      "../hmcc/work_dirs/qwen3_8b_64k_prefill.xh2/output.hmm"
+    ],
+    "shared_entries": 1820,
+    "total_entry_bytes": 4180459072
+  },
+  "gguf": {
+    "file": "qwen3_8b.q8_0.gguf",
+    "version": 3,
+    "tensors": 1,
+    "tensor_info": [
+      {
+        "name": "token_embd.weight",
+        "dimensions": [
+          4096,
+          151936
+        ],
+        "type_id": 8,
+        "offset": 0
+      }
+    ],
+    "metadata": {
+      "general.architecture": "qwen3",
+      "general.type": "model",
+      "general.name": "Qwen3 8b Distill",
+      "general.finetune": "8b-distill",
+      "general.basename": "qwen3",
+      "general.size_label": "622M",
+      "qwen3.block_count": 36,
+      "qwen3.context_length": 40960,
+      "qwen3.embedding_length": 4096,
+      "qwen3.feed_forward_length": 12288,
+      "qwen3.attention.head_count": 32,
+      "qwen3.attention.head_count_kv": 8,
+      "qwen3.rope.freq_base": 1000000.0,
+      "qwen3.attention.layer_norm_rms_epsilon": 9.999999974752427e-07,
+      "qwen3.attention.key_length": 128,
+      "qwen3.attention.value_length": 128,
+      "tokenizer.ggml.model": "gpt2",
+      "general.quantization_version": 2,
+      "general.file_type": 7
+    }
+  },
+  "previously_observed_runtime": {
+    "image": "qwen3_8b_64k_houmo:20260119",
+    "engine_version": "5926 (9248ffdae)",
+    "libraries": [
+      "libtcim_runtime_lite.so",
+      "libhal_xh2a.so"
+    ],
+    "environment": {
+      "HOUMO_LLM_PATH": "../model",
+      "KV_CACHE_ALIGN": "64",
+      "NO_CPU_KV_CACHE": "1"
+    },
+    "arguments": "./llama-server -m ../model/qwen3_8b.q8_0.gguf -t 2 -c 65536 -ub 256"
+  },
+  "unknown": [
+    "Exact compiler release, flags and calibration data",
+    "Quantization precision of every NPU tensor",
+    "Whether all official models use the same pipeline",
+    "Whether this specific package uses TurboSparse or PowerInfer-specific optimizations"
+  ]
+}

@@ -10,6 +10,7 @@ Run a custom GGUF model on a Tiiny AI device using its ARM CPU or Mali GPU, from
 2. Run the example with the [CPU guide](docs/cpu.md) or [GPU guide](docs/gpu.md).
 3. Substitute another compatible GGUF using [custom model instructions](docs/custom-models.md).
 4. Read [results and limitations](docs/results.md), [troubleshooting](docs/troubleshooting.md), and the [NPU investigation checkpoint](docs/npu.md).
+5. Explore [Python GPU signal processing](docs/gpu-signal.md) and [how Tiiny's native models are compiled and packaged](docs/native-models.md).
 
 The Mac downloads and serves engine/model files. **Inference runs on Tiiny**, not on the Mac. The device does not need internet access during this workflow.
 
@@ -36,6 +37,8 @@ The GPU worked but was slower in this small test. Different output lengths, shor
 
 A custom OpenCL vector-add kernel also passed on the GPU. A separate container successfully executed an older, precompiled Houmo convolution model on the NPU: two input cases took about 8.3–8.4 ms each and produced finite, different outputs. **Compiling a new NPU model and running LFM3 on the NPU remain unfinished.** The current public test binary failed the installed runtime's binary-version check; the compatible historical binary worked. See [the NPU investigation](docs/npu.md).
 
+A Python-controlled GPU signal-processing experiment also passed: Hann window, 2,048-point FFT, 2–4 MHz band-pass mask, and inverse FFT. For 256 synthetic signals, filtered-output relative error versus a double-precision reference was 1.19 × 10⁻⁷. A repeat run took 4.70 ms including GPU transfers versus 10.62 ms for single-worker SciPy on the Tiiny CPU; one short signal was faster on the CPU. These are bounded measurements in a one-CPU container, not peak-throughput figures. See [the experiment and timing limits](docs/gpu-signal.md).
+
 ## Repository contents
 
 | File or directory | Purpose |
@@ -57,6 +60,12 @@ A custom OpenCL vector-add kernel also passed on the GPU. A separate container s
 | `results/workflow-validation.json` | Live CPU/GPU checks of this repository's packaged workflow. |
 | `experiments/npu_compute.py` | Exact in-container probe used for the successful, bounded NPU computation test. |
 | `results/npu-compiler-investigation.json` | Compiler findings, both binary-load attempts, NPU outputs, and LFM3 ONNX graph inspection. |
+| `experiments/gpu_signal.py` | Python/OpenCL FFT filtering experiment with double-precision validation and timing. |
+| `experiments/run_gpu_signal.py` | Mac launcher for the temporary GPU experiment and its cleanup. |
+| `docs/gpu-signal.md` | Measured accuracy, performance limits, and reproduction command. |
+| `docs/native-models.md` | Installed Qwen package evidence and the documented Houmo compilation pipeline. |
+| `results/gpu-signal.json`, `results/gpu-signal.svg` | Raw timing/accuracy records for two runs, plot data, and spectrum/timing illustration. |
+| `results/native-model-package.json` | Selected manifest, GGUF tensor metadata, and runtime evidence from the installed Qwen package. |
 | `.gitignore` | Exclude local assets, environments, credentials files, and binary model/image files. |
 | `.local/` | Ignored local configuration, downloaded assets, and cache; created during setup. |
 
